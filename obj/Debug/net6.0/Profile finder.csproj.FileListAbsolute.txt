@@ -1,0 +1,5 @@
+D:\Programs\Profile finder\Profile finder\obj\Debug\net6.0\Profile finder.csproj.AssemblyReference.cache
+D:\Programs\Profile finder\Profile finder\obj\Debug\net6.0\Profile finder.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Profile finder\Profile finder\obj\Debug\net6.0\Profile finder.AssemblyInfoInputs.cache
+D:\Programs\Profile finder\Profile finder\obj\Debug\net6.0\Profile finder.AssemblyInfo.cs
+D:\Programs\Profile finder\Profile finder\obj\Debug\net6.0\Profile finder.csproj.CoreCompileInputs.cache

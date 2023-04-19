@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 class Program
@@ -10,7 +10,14 @@ class Program
 
         // Ищем файл Player.log в заданной папке и всех подпапках
         string[] logFiles = Directory.GetFiles(path, "Player.log", SearchOption.AllDirectories);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("╔═══╗╔═══╗╔═══╗╔═══╗╔══╗╔╗───╔═══╗     ╔═══╗╔══╗╔═╗─╔╗╔═══╗╔═══╗╔═══╗\r\n║╔═╗║║╔═╗║║╔═╗║║╔══╝╚╣─╝║║───║╔══╝     ║╔══╝╚╣─╝║║╚╗║║╚╗╔╗║║╔══╝║╔═╗║\r\n║╚═╝║║╚═╝║║║─║║║╚══╗─║║─║║───║╚══╗     ║╚══╗─║║─║╔╗╚╝║─║║║║║╚══╗║╚═╝║\r\n║╔══╝║╔╗╔╝║║─║║║╔══╝─║║─║║─╔╗║╔══╝     ║╔══╝─║║─║║╚╗║║─║║║║║╔══╝║╔╗╔╝\r\n║║───║║║╚╗║╚═╝║║║───╔╣─╗║╚═╝║║╚══╗     ║║───╔╣─╗║║─║║║╔╝╚╝║║╚══╗║║║╚╗\r\n╚╝───╚╝╚═╝╚═══╝╚╝───╚══╝╚═══╝╚═══╝     ╚╝───╚══╝╚╝─╚═╝╚═══╝╚═══╝╚╝╚═╝");
+        Console.Write("\n");
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.Write("Вводите ник без пробелов и ошибок. Так же можно просто скопировать ник с рабочей таблицы и вставить в консоль.\n");
 
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.Write("Введите ник профиля: ");
         string username = Console.ReadLine()!;
         string keyword = $"\"username\":\"{username}\"";
@@ -39,7 +46,7 @@ class Program
         if (!found)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Профиль не найден.");
+            Console.WriteLine("\nПрофиль не найден.\n\nВозможно профиль не находится в папке с Bv Gamer.\nПопробуйте активировать профиль \"Эмуляция отключена\", в Bv Gamer Tools, и повторить попытку.\n");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Нажмите любую кнопку для закрытия...");

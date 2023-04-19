@@ -17,40 +17,51 @@ class Program
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.Write("Вводите ник без пробелов и ошибок. Так же можно просто скопировать ник с рабочей таблицы и вставить в консоль.\n");
 
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write("Введите ник профиля: ");
-        string username = Console.ReadLine()!;
-        string keyword = $"\"username\":\"{username}\"";
-        bool found = false;
+        string username;
+        bool found;
 
-        // Ищем ключевое слово в каждом файле Player.log
-        foreach (string file in logFiles)
+        do
         {
-            using (StreamReader reader = new StreamReader(file))
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Введите ник профиля: ");
+            username = Console.ReadLine()!;
+            string keyword = $"\"username\":\"{username}\"";
+            found = false;
+
+            // Ищем ключевое слово в каждом файле Player.log
+            foreach (string file in logFiles)
             {
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(file))
                 {
-                    string line = reader.ReadLine()!;
-                    if (line.Contains(keyword))
+                    while (!reader.EndOfStream)
                     {
-                        found = true;
-                        string folderPath = Path.GetDirectoryName(file)!;
-                        System.Diagnostics.Process.Start("explorer.exe", folderPath);
-                        break;
+                        string line = reader.ReadLine()!;
+                        if (line.Contains(keyword))
+                        {
+                            found = true;
+                            string folderPath = Path.GetDirectoryName(file)!;
+                            System.Diagnostics.Process.Start("explorer.exe", folderPath);
+                            break;
+                        }
                     }
                 }
+                if (found) break;
             }
-            if (found) break;
-        }
 
-        if (!found)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nПрофиль не найден.\n\nВозможно профиль не находится в папке с Bv Gamer.\nПопробуйте активировать профиль \"Эмуляция отключена\", в Bv Gamer Tools, и повторить попытку.\n");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Нажмите любую кнопку для закрытия...");
-            Console.ReadKey();
-        }
+            if (!found)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nПрофиль не найден.\n\nВозможно профиль не находится в папке с Bv Gamer.\nПопробуйте активировать профиль \"Эмуляция отключена\", в Bv Gamer Tools, и повторить попытку.\n");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Желаете повторить ввод ника? (Y/N): ");
+                string answer = Console.ReadLine()!.Trim().ToLower();
+                if (answer != "y") return;
+            }
+
+        } while (!found);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Environment.Exit(0);
     }
 }
